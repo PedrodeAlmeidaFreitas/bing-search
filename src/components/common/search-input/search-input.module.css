@@ -1,0 +1,27 @@
+.SearchBar {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 5%;
+}
+
+.IconSearch {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    right: 6.5%;
+    width: 30px;
+}
+
+.IconClose {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    right: 11%;
+    width: 30px;
+}

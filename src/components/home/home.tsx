@@ -1,36 +1,22 @@
-import { ReactElement, useState } from "react";
-import Form from "react-bootstrap/Form";
-import "./home.css";
+import { Link, useNavigate } from "react-router-dom";
+import SearchInput from "../common/search-input/search-input";
+import styles from "./home.module.css";
 
 const Home = () => {
-  const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchText(event.target.value);
-  };
-
-  const getIconInput = (): ReactElement => {
-    if (searchText) {
-      return <img src="/icons/close.svg" alt="" />;
-    }
-    return <img src="/icons/search.svg" alt="" />;
+  const sendToResults = (searchText: string) => {
+    navigate("/search-result", { state: { searchText } });
   };
 
   return (
-    <section className="Home">
-      <section className="Logo">
-        <img src="/logo.png" alt="" />
+    <section className={styles.Home}>
+      <section className={styles.Logo}>
+        <Link to="/">
+          <img src="/logo.png" alt="Logo" />
+        </Link>
       </section>
-      <section className="SearchBar">
-        <Form.Control
-          onChange={handleChange}
-          value={searchText}
-          type="text"
-          id=""
-          aria-describedby="passwordHelpBlock"
-        />
-        <div className="iconSearch">{getIconInput()}</div>
-      </section>
+      <SearchInput handleChange={sendToResults} />
     </section>
   );
 };

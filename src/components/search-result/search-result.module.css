@@ -1,0 +1,16 @@
+.SearchResultHeader {
+    position: relative;
+    display: flex;
+    width: 100%;
+    background-color: #38224c;
+    padding: 1rem;
+}
+
+.SearchResultLogo {
+    width: 100px;
+}
+
+.SearchResultText {
+    padding: 1rem 0;
+    font-weight: 300;
+}

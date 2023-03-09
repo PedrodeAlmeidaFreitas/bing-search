@@ -14,6 +14,7 @@ export class Axios<T> implements IRequest<T> {
   }
 
   get(path: string): Promise<T> {
+    console.log("oi");
     return this.axiosClient.get(path);
   }
 }

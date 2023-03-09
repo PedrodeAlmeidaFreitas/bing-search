@@ -11,16 +11,3 @@
 .Logo {
     margin: 2rem;
 }
-
-.SearchBar {
-    display: flex;
-    position: relative;
-    flex-direction: row;
-    width: 50%;
-}
-
-.iconSearch {
-    position: absolute;
-    right: 0;
-    padding: .2rem .75rem;
-}
