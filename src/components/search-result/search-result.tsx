@@ -3,6 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { IBing } from "../../core/interfaces/Bing/IBing";
 import { BingService } from "../../core/services/bing.service";
+import Loading from "../common/loading/loading";
 import SearchInput from "../common/search-input/search-input";
 import styles from "./search-result.module.css";
 
@@ -30,51 +31,66 @@ const SearchResult = () => {
 
   const getSearchItems = (): ReactElement | ReactElement[] => {
     if (!fetchedData()) {
-      return (
-        <Row>
-          <Col>
-            <p>Loading... "{process.env.REACT_APP_BING_URL}"</p>
-          </Col>
-        </Row>
-      );
+      return <Loading />;
     }
-    console.log(response);
-    // return <></>;
     return response.webPages.value.map((page) => (
-      <a href={page.url} key={page.name}>
-        <div key={page.name}>
-          <p className={styles.SearchResultItemTitle}>{page.name}</p>
-          <p className={styles.SearchResultItemLink}>{page.url}</p>
-          <Col>
-            {page.thumbnailUrl ? (
-              <img src={page.thumbnailUrl} alt={page.name} />
-            ) : (
-              <></>
-            )}
-          </Col>
-          <Col>
-            <p className={styles.SearchResultItemDescription}>{page.snippet}</p>
-          </Col>
+      <div key={page.name}>
+        <a
+          className={styles.SearchResultItemLink}
+          href={page.url}
+          target="_blank"
+          rel="noreferrer"
+        >
           <Row>
-            {page.deepLinks ? (
-              page.deepLinks.map((deepLinks) => (
-                <a href={deepLinks.url}>{deepLinks.name}</a>
-              ))
+            <p className={styles.SearchResultItemTitle}>{page.name}</p>
+            <p className={styles.SearchResultItemLink}>{page.url}</p>
+            {page.thumbnailUrl ? (
+              <>
+                <Col lg={2}>
+                  <img src={page.thumbnailUrl} alt={page.name} />
+                </Col>
+                <Col lg={10}>
+                  <p className={styles.SearchResultItemDescription}>
+                    {page.snippet}
+                  </p>
+                </Col>
+              </>
             ) : (
-              <></>
+              <Col>
+                <p className={styles.SearchResultItemDescription}>
+                  {page.snippet}
+                </p>
+              </Col>
             )}
           </Row>
-        </div>
-      </a>
+        </a>
+        <Row className={styles.SearchResultItemDeepLink}>
+          {page.deepLinks ? (
+            page.deepLinks.map((deepLinks, index) => (
+              <a
+                className={styles.SearchResultItemDeepLinkItem}
+                href={deepLinks.url}
+                key={`deep-link-${index}`}
+              >
+                {deepLinks.name}
+              </a>
+            ))
+          ) : (
+            <></>
+          )}
+        </Row>
+      </div>
     ));
   };
 
   return (
     <div>
       <section className={styles.SearchResultHeader}>
-        <Link to="/">
-          <img className={styles.SearchResultLogo} src="/logo.png" alt="" />
-        </Link>
+        <div>
+          <Link to="/">
+            <img className={styles.SearchResultLogo} src="/logo.png" alt="" />
+          </Link>
+        </div>
         <SearchInput initialValue="123" handleChange={() => {}} />
       </section>
       <section className={styles.SearchResultText}>
@@ -82,7 +98,7 @@ const SearchResult = () => {
           <Row>
             <Col>
               <p>
-                Looking for results for: <b className="Bold">{}qweqwe</b>
+                Looking for results for: <b className="Bold">{}</b>
               </p>
             </Col>
           </Row>

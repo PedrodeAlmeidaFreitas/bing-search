@@ -15,7 +15,18 @@
     font-weight: 300;
 }
 
+.SearchResultItemLink {
+    text-decoration: none;
+    margin-bottom: 1rm;
+    color: #006d21;
+}
+
+.SearchResultItemLink:hover {
+    background-color: #eee;
+}
+
 .SearchResultItemTitle {
+    margin-bottom: 0;
     color: #4007a2;
 }
 
@@ -23,10 +34,23 @@
     text-decoration: underline;
 }
 
-.SearchResultItemLink {
-    color: #006d21;
-}
-
 .SearchResultItemDescription {
     color: #444;
+    height: 100%;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin-bottom: 1rem;
+}
+
+.SearchResultItemDeepLink {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: 1rem;
+}
+
+.SearchResultItemDeepLinkItem {
+    width: auto;
 }
