@@ -7,14 +7,14 @@ export class Axios<T> implements IRequest<T> {
 
   constructor() {
     this.axiosClient = axios.create({
-      baseURL: process.env.BING_URL,
-      timeout: 30,
-      headers: { "Ocp-Apim-Subscription-Key": process.env.SUBSCRIPTION_KEY },
+      baseURL: process.env.REACT_APP_BING_URL,
+      headers: {
+        "Ocp-Apim-Subscription-Key": process.env.REACT_APP_SUBSCRIPTION_KEY,
+      },
     });
   }
 
   get(path: string): Promise<T> {
-    console.log("oi");
     return this.axiosClient.get(path);
   }
 }

@@ -14,3 +14,19 @@
     padding: 1rem 0;
     font-weight: 300;
 }
+
+.SearchResultItemTitle {
+    color: #4007a2;
+}
+
+.SearchResultItemTitle:hover {
+    text-decoration: underline;
+}
+
+.SearchResultItemLink {
+    color: #006d21;
+}
+
+.SearchResultItemDescription {
+    color: #444;
+}
